@@ -1,0 +1,1348 @@
+{
+  "contractName": "HospitalContract",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.13+commit.abaa5c0e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/HospitalContract.sol\":\"HospitalContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/HospitalContract.sol\":{\"keccak256\":\"0xf7e68face2cd3ff36f1886e5acd0501e355349b1e65fbfac096cd8cff1fb10aa\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://151ca84fb57ebe5afbc50cf5309f262e723baaaa16d07a0b784fc80a636f5f11\",\"dweb:/ipfs/QmdAShaqqkhxshgs2xv656aRotdGnygbjzD1LDNypa1ujv\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550603f80605d6000396000f3fe6080604052600080fdfea26469706673582212209ac69aeb53475299e4ecdefb35359814b61344e8804d6560e6ef2c25710e172764736f6c634300080d0033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212209ac69aeb53475299e4ecdefb35359814b61344e8804d6560e6ef2c25710e172764736f6c634300080d0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "64:1480:0:-:0;;;782:54;;;;;;;;;;819:10;805:13;;:24;;;;;;;;;;;;;;;;;;64:1480;;;;;;",
+  "deployedSourceMap": "64:1480:0:-:0;;;;;",
+  "source": "//SPDX-License-Identifier: UNLICENSED\npragma solidity >0.4.1;\n\n\ncontract HospitalContract{\n    ////\n    ///...Different objects\n\n    struct Hospital{\n        address hospital_account_address;\n        string name;\n        string hospital_address;\n        uint hospital_number;\n        address[] doctors_list;\n    }\n    \n    struct Doctor{\n        address doctor_account_address;\n        string name;\n        string[] specializations;\n    }\n\n    struct Patient{\n        address patient_account_address;\n        EHR[] medical_records;\n    }\n\n\n    struct EHR{\n        string date; \n        string disease_name;\n        string medicines_prescribed;\n        string ipfshash_of_documnet;\n    }\n\n    ////....Creating the administrator of the system\n\n    address internal administrator;\n    constructor(){\n        administrator=msg.sender;\n    }\n\n    //.....Creation of  Hospital by administrator\n    \n\n    mapping(address=>Hospital)internal hosital_list;\n\n    function addHospital( \n        address hospital_account_address,\n        string memory name,\n        string memory hospital_address,\n        uint hospital_number\n        )  \n        \n        internal\n        \n        {\n\n        require((msg.sender==administrator),\"YOU ARE NOT PERMITTED TO DO THIS\");\n        Hospital memory newHp;\n        newHp.hospital_account_address=hospital_account_address;\n        newHp.name=name;\n        newHp.hospital_address=hospital_address;\n        newHp.hospital_number=hospital_number;\n        hosital_list[hospital_account_address]=newHp;\n\n\n    }\n\n\n   \n   \n\n}\n\n///////////////////\n\n\n\n",
+  "sourcePath": "/home/praneeth/BlockChain/eth-todo-list/contracts/HospitalContract.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/HospitalContract.sol",
+    "exportedSymbols": {
+      "HospitalContract": [
+        109
+      ]
+    },
+    "id": 110,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">",
+          "0.4",
+          ".1"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "HospitalContract",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 109,
+        "linearizedBaseContracts": [
+          109
+        ],
+        "name": "HospitalContract",
+        "nameLocation": "73:16:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "HospitalContract.Hospital",
+            "id": 13,
+            "members": [
+              {
+                "constant": false,
+                "id": 3,
+                "mutability": "mutable",
+                "name": "hospital_account_address",
+                "nameLocation": "166:24:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 13,
+                "src": "158:32:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 2,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "158:7:0",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 5,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "207:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 13,
+                "src": "200:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 4,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "200:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 7,
+                "mutability": "mutable",
+                "name": "hospital_address",
+                "nameLocation": "228:16:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 13,
+                "src": "221:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 6,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "221:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 9,
+                "mutability": "mutable",
+                "name": "hospital_number",
+                "nameLocation": "259:15:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 13,
+                "src": "254:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 8,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "254:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12,
+                "mutability": "mutable",
+                "name": "doctors_list",
+                "nameLocation": "294:12:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 13,
+                "src": "284:22:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 10,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "284:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 11,
+                  "nodeType": "ArrayTypeName",
+                  "src": "284:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                    "typeString": "address[]"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Hospital",
+            "nameLocation": "140:8:0",
+            "nodeType": "StructDefinition",
+            "scope": 109,
+            "src": "133:180:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "HospitalContract.Doctor",
+            "id": 21,
+            "members": [
+              {
+                "constant": false,
+                "id": 15,
+                "mutability": "mutable",
+                "name": "doctor_account_address",
+                "nameLocation": "354:22:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 21,
+                "src": "346:30:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 14,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "346:7:0",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 17,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "393:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 21,
+                "src": "386:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 16,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "386:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 20,
+                "mutability": "mutable",
+                "name": "specializations",
+                "nameLocation": "416:15:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 21,
+                "src": "407:24:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                  "typeString": "string[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 18,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "407:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "id": 19,
+                  "nodeType": "ArrayTypeName",
+                  "src": "407:8:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                    "typeString": "string[]"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Doctor",
+            "nameLocation": "330:6:0",
+            "nodeType": "StructDefinition",
+            "scope": 109,
+            "src": "323:115:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "HospitalContract.Patient",
+            "id": 28,
+            "members": [
+              {
+                "constant": false,
+                "id": 23,
+                "mutability": "mutable",
+                "name": "patient_account_address",
+                "nameLocation": "476:23:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 28,
+                "src": "468:31:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 22,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "468:7:0",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 27,
+                "mutability": "mutable",
+                "name": "medical_records",
+                "nameLocation": "515:15:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 28,
+                "src": "509:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_EHR_$37_storage_$dyn_storage_ptr",
+                  "typeString": "struct HospitalContract.EHR[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 25,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 24,
+                      "name": "EHR",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 37,
+                      "src": "509:3:0"
+                    },
+                    "referencedDeclaration": 37,
+                    "src": "509:3:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_EHR_$37_storage_ptr",
+                      "typeString": "struct HospitalContract.EHR"
+                    }
+                  },
+                  "id": 26,
+                  "nodeType": "ArrayTypeName",
+                  "src": "509:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_EHR_$37_storage_$dyn_storage_ptr",
+                    "typeString": "struct HospitalContract.EHR[]"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Patient",
+            "nameLocation": "451:7:0",
+            "nodeType": "StructDefinition",
+            "scope": 109,
+            "src": "444:93:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "HospitalContract.EHR",
+            "id": 37,
+            "members": [
+              {
+                "constant": false,
+                "id": 30,
+                "mutability": "mutable",
+                "name": "date",
+                "nameLocation": "571:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "564:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 29,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "564:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32,
+                "mutability": "mutable",
+                "name": "disease_name",
+                "nameLocation": "593:12:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "586:19:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 31,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "586:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 34,
+                "mutability": "mutable",
+                "name": "medicines_prescribed",
+                "nameLocation": "622:20:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "615:27:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "615:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "mutability": "mutable",
+                "name": "ipfshash_of_documnet",
+                "nameLocation": "659:20:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "652:27:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "652:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "EHR",
+            "nameLocation": "551:3:0",
+            "nodeType": "StructDefinition",
+            "scope": 109,
+            "src": "544:142:0",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 39,
+            "mutability": "mutable",
+            "name": "administrator",
+            "nameLocation": "763:13:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 109,
+            "src": "746:30:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 38,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "746:7:0",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 47,
+              "nodeType": "Block",
+              "src": "795:41:0",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 45,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 42,
+                      "name": "administrator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 39,
+                      "src": "805:13:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 43,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "819:3:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 44,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "819:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "805:24:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 46,
+                  "nodeType": "ExpressionStatement",
+                  "src": "805:24:0"
+                }
+              ]
+            },
+            "id": 48,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 40,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "793:2:0"
+            },
+            "returnParameters": {
+              "id": 41,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "795:0:0"
+            },
+            "scope": 109,
+            "src": "782:54:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 53,
+            "mutability": "mutable",
+            "name": "hosital_list",
+            "nameLocation": "933:12:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 109,
+            "src": "898:47:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Hospital_$13_storage_$",
+              "typeString": "mapping(address => struct HospitalContract.Hospital)"
+            },
+            "typeName": {
+              "id": 52,
+              "keyType": {
+                "id": 49,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "906:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "898:26:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Hospital_$13_storage_$",
+                "typeString": "mapping(address => struct HospitalContract.Hospital)"
+              },
+              "valueType": {
+                "id": 51,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 50,
+                  "name": "Hospital",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 13,
+                  "src": "915:8:0"
+                },
+                "referencedDeclaration": 13,
+                "src": "915:8:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Hospital_$13_storage_ptr",
+                  "typeString": "struct HospitalContract.Hospital"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 107,
+              "nodeType": "Block",
+              "src": "1169:362:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "components": [
+                          {
+                            "commonType": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            "id": 68,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftExpression": {
+                              "expression": {
+                                "id": 65,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "1189:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 66,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "1189:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "nodeType": "BinaryOperation",
+                            "operator": "==",
+                            "rightExpression": {
+                              "id": 67,
+                              "name": "administrator",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 39,
+                              "src": "1201:13:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "src": "1189:25:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          }
+                        ],
+                        "id": 69,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "1188:27:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "594f5520415245204e4f54205045524d495454454420544f20444f2054484953",
+                        "id": 70,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1216:34:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_17dccd8811b12921fc3962840b2ccfa4d7cf6ef2d764d3f4d1571ed193a8e089",
+                          "typeString": "literal_string \"YOU ARE NOT PERMITTED TO DO THIS\""
+                        },
+                        "value": "YOU ARE NOT PERMITTED TO DO THIS"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_17dccd8811b12921fc3962840b2ccfa4d7cf6ef2d764d3f4d1571ed193a8e089",
+                          "typeString": "literal_string \"YOU ARE NOT PERMITTED TO DO THIS\""
+                        }
+                      ],
+                      "id": 64,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1180:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 71,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1180:71:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 72,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1180:71:0"
+                },
+                {
+                  "assignments": [
+                    75
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 75,
+                      "mutability": "mutable",
+                      "name": "newHp",
+                      "nameLocation": "1277:5:0",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 107,
+                      "src": "1261:21:0",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Hospital_$13_memory_ptr",
+                        "typeString": "struct HospitalContract.Hospital"
+                      },
+                      "typeName": {
+                        "id": 74,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 73,
+                          "name": "Hospital",
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 13,
+                          "src": "1261:8:0"
+                        },
+                        "referencedDeclaration": 13,
+                        "src": "1261:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Hospital_$13_storage_ptr",
+                          "typeString": "struct HospitalContract.Hospital"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 76,
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1261:21:0"
+                },
+                {
+                  "expression": {
+                    "id": 81,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 77,
+                        "name": "newHp",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 75,
+                        "src": "1292:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Hospital_$13_memory_ptr",
+                          "typeString": "struct HospitalContract.Hospital memory"
+                        }
+                      },
+                      "id": 79,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "hospital_account_address",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3,
+                      "src": "1292:30:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 80,
+                      "name": "hospital_account_address",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 55,
+                      "src": "1323:24:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1292:55:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 82,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1292:55:0"
+                },
+                {
+                  "expression": {
+                    "id": 87,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 83,
+                        "name": "newHp",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 75,
+                        "src": "1357:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Hospital_$13_memory_ptr",
+                          "typeString": "struct HospitalContract.Hospital memory"
+                        }
+                      },
+                      "id": 85,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "name",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5,
+                      "src": "1357:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 86,
+                      "name": "name",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 57,
+                      "src": "1368:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1357:15:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "id": 88,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1357:15:0"
+                },
+                {
+                  "expression": {
+                    "id": 93,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 89,
+                        "name": "newHp",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 75,
+                        "src": "1382:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Hospital_$13_memory_ptr",
+                          "typeString": "struct HospitalContract.Hospital memory"
+                        }
+                      },
+                      "id": 91,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "hospital_address",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 7,
+                      "src": "1382:22:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 92,
+                      "name": "hospital_address",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 59,
+                      "src": "1405:16:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1382:39:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "id": 94,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1382:39:0"
+                },
+                {
+                  "expression": {
+                    "id": 99,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 95,
+                        "name": "newHp",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 75,
+                        "src": "1431:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Hospital_$13_memory_ptr",
+                          "typeString": "struct HospitalContract.Hospital memory"
+                        }
+                      },
+                      "id": 97,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "hospital_number",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 9,
+                      "src": "1431:21:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 98,
+                      "name": "hospital_number",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 61,
+                      "src": "1453:15:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1431:37:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 100,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1431:37:0"
+                },
+                {
+                  "expression": {
+                    "id": 105,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 101,
+                        "name": "hosital_list",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 53,
+                        "src": "1478:12:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Hospital_$13_storage_$",
+                          "typeString": "mapping(address => struct HospitalContract.Hospital storage ref)"
+                        }
+                      },
+                      "id": 103,
+                      "indexExpression": {
+                        "id": 102,
+                        "name": "hospital_account_address",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 55,
+                        "src": "1491:24:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1478:38:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Hospital_$13_storage",
+                        "typeString": "struct HospitalContract.Hospital storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 104,
+                      "name": "newHp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 75,
+                      "src": "1517:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Hospital_$13_memory_ptr",
+                        "typeString": "struct HospitalContract.Hospital memory"
+                      }
+                    },
+                    "src": "1478:44:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Hospital_$13_storage",
+                      "typeString": "struct HospitalContract.Hospital storage ref"
+                    }
+                  },
+                  "id": 106,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1478:44:0"
+                }
+              ]
+            },
+            "id": 108,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addHospital",
+            "nameLocation": "961:11:0",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 62,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 55,
+                  "mutability": "mutable",
+                  "name": "hospital_account_address",
+                  "nameLocation": "991:24:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 108,
+                  "src": "983:32:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 54,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "983:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 57,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "1039:4:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 108,
+                  "src": "1025:18:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 56,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1025:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 59,
+                  "mutability": "mutable",
+                  "name": "hospital_address",
+                  "nameLocation": "1067:16:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 108,
+                  "src": "1053:30:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 58,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1053:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 61,
+                  "mutability": "mutable",
+                  "name": "hospital_number",
+                  "nameLocation": "1098:15:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 108,
+                  "src": "1093:20:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 60,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1093:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "972:151:0"
+            },
+            "returnParameters": {
+              "id": 63,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1169:0:0"
+            },
+            "scope": 109,
+            "src": "952:579:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 110,
+        "src": "64:1480:0",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:1531:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.13+commit.abaa5c0e.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x1F27bbbd122B8d965A0cb033dc0114AA52F0D897",
+      "transactionHash": "0x7c505e1d686c1c203315a67a3864cbcd3ff95f15f6af62c52f9bbaa34a5edf94"
+    }
+  },
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-06-01T16:09:54.216Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

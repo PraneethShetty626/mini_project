@@ -1,8 +1,6 @@
-const Todo = artifacts.require("./Todo.sol");
+const Todo = artifacts.require("HospitalContract");
 
 
 module.exports = function (deployer) {
   deployer.deploy(Todo);
-  
-
 };
