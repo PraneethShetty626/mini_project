@@ -16,7 +16,7 @@
   "sourceMap": "64:1480:0:-:0;;;782:54;;;;;;;;;;819:10;805:13;;:24;;;;;;;;;;;;;;;;;;64:1480;;;;;;",
   "deployedSourceMap": "64:1480:0:-:0;;;;;",
   "source": "//SPDX-License-Identifier: UNLICENSED\npragma solidity >0.4.1;\n\n\ncontract HospitalContract{\n    ////\n    ///...Different objects\n\n    struct Hospital{\n        address hospital_account_address;\n        string name;\n        string hospital_address;\n        uint hospital_number;\n        address[] doctors_list;\n    }\n    \n    struct Doctor{\n        address doctor_account_address;\n        string name;\n        string[] specializations;\n    }\n\n    struct Patient{\n        address patient_account_address;\n        EHR[] medical_records;\n    }\n\n\n    struct EHR{\n        string date; \n        string disease_name;\n        string medicines_prescribed;\n        string ipfshash_of_documnet;\n    }\n\n    ////....Creating the administrator of the system\n\n    address internal administrator;\n    constructor(){\n        administrator=msg.sender;\n    }\n\n    //.....Creation of  Hospital by administrator\n    \n\n    mapping(address=>Hospital)internal hosital_list;\n\n    function addHospital( \n        address hospital_account_address,\n        string memory name,\n        string memory hospital_address,\n        uint hospital_number\n        )  \n        \n        internal\n        \n        {\n\n        require((msg.sender==administrator),\"YOU ARE NOT PERMITTED TO DO THIS\");\n        Hospital memory newHp;\n        newHp.hospital_account_address=hospital_account_address;\n        newHp.name=name;\n        newHp.hospital_address=hospital_address;\n        newHp.hospital_number=hospital_number;\n        hosital_list[hospital_account_address]=newHp;\n\n\n    }\n\n\n   \n   \n\n}\n\n///////////////////\n\n\n\n",
-  "sourcePath": "/home/praneeth/BlockChain/eth-todo-list/contracts/HospitalContract.sol",
+  "sourcePath": "/media/praneeth/New Volume/z_main_folder/Block_Chain/eth-todo-list/contracts/HospitalContract.sol",
   "ast": {
     "absolutePath": "project:/contracts/HospitalContract.sol",
     "exportedSymbols": {
@@ -1333,8 +1333,7 @@
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-01T16:09:54.216Z",
-  "networkType": "ethereum",
+  "updatedAt": "2022-06-03T15:43:57.212Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

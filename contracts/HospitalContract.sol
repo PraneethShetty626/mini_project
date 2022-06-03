@@ -10,12 +10,13 @@ contract HospitalContract{
         address hospital_account_address;
         string name;
         string hospital_address;
-        uint hospital_number;
-        address[] doctors_list;
+        uint hospital_number; 
+        
     }
     
     struct Doctor{
         address doctor_account_address;
+        address current_hospital_address;
         string name;
         string[] specializations;
     }
@@ -52,7 +53,7 @@ contract HospitalContract{
         uint hospital_number
         )  
         
-        internal
+        public
         
         {
 
@@ -67,9 +68,27 @@ contract HospitalContract{
 
     }
 
+    //.....Deletion of hospital by administrator
 
+    function removeHospital(address hospital_account_address) public returns(bool){
+        require((msg.sender==administrator),"You are not permitted");
+        require((hosital_list[hospital_account_address].hospital_account_address!=hospital_account_address),"Hospital dont exists");
+        delete hosital_list[hospital_account_address];
+        return true;
+    }
    
    
+
+
+   //...Recruitement of doctor by the hospital
+    //    struct Doctor{
+    //     address doctor_account_address;
+    //     address current_hospital_address;
+    //     string name;
+    //     string[] specializations;
+    // }
+
+ 
 
 }
 
