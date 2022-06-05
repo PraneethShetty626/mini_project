@@ -17,14 +17,17 @@ contract HospitalContract{
     
     struct Doctor{
         address doctor_account_address;
-        address current_hospital_address;
         string name;
-        string[] specializations;
+        string specializations;
     }
 
     struct Patient{
         address patient_account_address;
-        EHR[] medical_records;
+        string name;
+        string perm_address;
+        int8 age;
+        string gender;
+        bool registered;
     }
 
 
@@ -94,38 +97,82 @@ contract HospitalContract{
         _;
     }
 
-    Doctor[] doctor_list;
+  
+    mapping(address=>Doctor[]) doctors_in_hospital;
 
     function addDoctor(
         address doctor_account_address,
         string memory name,
-        string[] memory specializations
+        string memory specializations
     )
         public isHospital returns(bool)
     {
-        doctor_list.push(Doctor(doctor_account_address,msg.sender,name,specializations));
+        
+        doctors_in_hospital[msg.sender].push(Doctor(doctor_account_address,name,specializations));
         return true;
     }
 
 
     function removeDoctor(address doctor_account_address) public isHospital returns(bool){
-        for(uint i=0; i<doctor_list.length; i++){
-            if(doctor_list[i].doctor_account_address==doctor_account_address && doctor_list[i].current_hospital_address==msg.sender){
-                delete doctor_list[i];
+        for(uint i=0; i<doctors_in_hospital[msg.sender].length; i++){
+            if(doctors_in_hospital[msg.sender][i].doctor_account_address==doctor_account_address){
+                delete doctors_in_hospital[msg.sender][i];
                 return true;
             }
         }     
-           revert("Either doctor is not recruited or hospital not registered");                
+        revert("Either doctor is not recruited or hospital not registered");                
     }
 
 
 
-
+    ////adding patient to the block chain by hospital 
   
 
+    mapping(address=>Patient) public patients;
 
-    
+    modifier isPatient(address patient_address){
+        require((patients[patient_address].registered),"patient not registered");
+        _;
+    }
 
+    function addPatint(
+        address patient_account_address,
+        string memory name,
+        string memory perm_address,
+        int8 age,
+        string memory gender
+        
+    ) isHospital public returns(bool){
+        Patient memory pat;
+        pat.patient_account_address=patient_account_address;
+        pat.name=name;
+        pat.perm_address=perm_address;
+        pat.age=age;
+        pat.gender=gender;
+        pat.registered=true;
+        patients[patient_account_address]=pat;
+        return true;
+    }   
+
+
+    mapping (address=>EHR[]) patientEhrs;
+
+    function addEHR(
+        address patient_address,
+        string memory date,
+        string memory disease_name,
+        string memory medicines_prescribed,
+        string memory ipfshash_of_document    
+        ) public isPatient(patient_address)  returns(bool) {
+            EHR memory ehr= EHR(
+                    date,
+                    disease_name,
+                    medicines_prescribed,
+                    ipfshash_of_document
+                );
+            patientEhrs[patient_address].push(ehr);
+            return true;
+    }
 }
 
 ///////////////////
