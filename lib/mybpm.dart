@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:block_fog/blockchain/bpvalues.dart';
+import 'package:block_fog/viewbp.dart';
 import 'package:flutter/material.dart';
 
 import 'package:heart_bpm/heart_bpm.dart';
@@ -18,6 +20,15 @@ class HeartMeasureState extends State<HeartMeasure> {
   int sum = 0;
   bool start = false;
   int time = 0;
+  BP? bp;
+  bool adding = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    bp = BP();
+  }
 
   void bpmavg() {
     for (var i in bpmValues) {
@@ -37,7 +48,7 @@ class HeartMeasureState extends State<HeartMeasure> {
   void startMeasure() {
     setState(() {
       start = true;
-      time = 10;
+      time = 60;
     });
 
     Timer.periodic(
@@ -70,7 +81,7 @@ class HeartMeasureState extends State<HeartMeasure> {
   Widget get progress => SquareProgressBar(
         width: 110, // default: max available space
         height: 110, // default: max available space
-        progress: time / 10, // provide the progress in a range from 0.0 to 1.0
+        progress: time / 60, // provide the progress in a range from 0.0 to 1.0
         isAnimation: false, // default: false, animate the progress of the bar
         solidBarColor: const Color.fromARGB(
             255, 255, 7, 7), // default: blue, main bar color
@@ -101,62 +112,89 @@ class HeartMeasureState extends State<HeartMeasure> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: start
-            ? progress
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    sum.toString(),
-                    style: TextStyle(fontSize: 100),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 50),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                      onPressed: startMeasure,
-                      iconSize: 150,
-                    ),
-                  )
-                ],
+      body: adding
+          ? const Center(
+              child: CircularProgressIndicator(
+                color: Colors.red,
               ),
-      ),
-      
+            )
+          : Container(
+              alignment: Alignment.center,
+              child: start
+                  ? progress
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          sum.toString(),
+                          style: TextStyle(fontSize: 100),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 50),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            ),
+                            onPressed: startMeasure,
+                            iconSize: 150,
+                          ),
+                        )
+                      ],
+                    ),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:start? null:Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            backgroundColor: Colors.red,
-            tooltip: "Add HBPM to Blockchain",
-            child:const Icon(Icons.add),
-            onPressed: () {
+      floatingActionButton: start
+          ? null
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FloatingActionButton(
+                  heroTag: "btn3",
+                  backgroundColor: Colors.red,
+                  tooltip: "Add HBPM to Blockchain",
+                  child: const Icon(Icons.add),
+                  onPressed: () {
+                    //
+                    if (sum != 0) {
+                      setState(() {
+                        adding=true;
+                      });
+                      bp!.add(sum).then((value) {
+                        setState(() {
+                          sum = 0;
+                          adding=false;
+                        });
 
-              //
-
-
-              
-            },
-          ),
-
-          FloatingActionButton(
-             backgroundColor: Colors.red,
-            tooltip: "View HBPM history",
-            child:const Icon(Icons.linear_scale_sharp),
-            onPressed: () {
-              //
-
-
-
-            },
-          ),
-        ],
-      ),
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text(" Heart BPM added to blockchain")),
+                        );
+                      }).onError((error, stackTrace) {
+                        setState(() {
+                          adding=false;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    "Failed to add Heart BPM to blockchain")));
+                      });
+                    }
+                  },
+                ),
+                FloatingActionButton(
+                  heroTag: "btn2",
+                  backgroundColor: Colors.red,
+                  tooltip: "View HBPM history",
+                  child: const Icon(Icons.linear_scale_sharp),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (ctc) {
+                      return ViewBp(bp!);
+                    }));
+                  },
+                ),
+              ],
+            ),
     );
   }
 }
