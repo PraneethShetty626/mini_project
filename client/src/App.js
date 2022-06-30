@@ -64,7 +64,7 @@ class App extends Component {
     console.log(this.state.loggedas);   //uncomment to check if components are loaded
     
     if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
+      return <div>Wait a second !!! </div>;
     }
     //Html template will call register page or if already regestered login page will be open
     //DocLogin file will be intiated
