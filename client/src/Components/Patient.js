@@ -58,7 +58,6 @@ class Patient extends Component {
 
 
     
-      
     componentDidMount(){ 
         
         this.loadPatient();    
@@ -71,6 +70,7 @@ class Patient extends Component {
         console.log('files',files);
         if(files[0])
         this.setState({files:files});
+        // console.log(accounts);
 
     }
     async loadPatient (){

@@ -25,7 +25,7 @@ function Home() {
         <br></br>
         <section class="abt">
           <h1> About Website</h1>
-          <p>csjkadvzcskzdcjb dskcjszdnx kdxlivuc iu hiknskkws,dubkdscs</p>
+          <p>This is blockchain based health care web application</p>
           <div class="row-dl">
             <div class="card-col">
               <h3 class="color:pink"><b>What we do</b></h3>
@@ -66,7 +66,7 @@ function Home() {
               <div><FaMailBulk /></div>
             </div>
           </div>
-          <p className='flex items-center justify-center'>Made &nbsp;with <div className='ml-2'><FaHeart /></div></p>
+          <p className='flex items-center justify-center'>Made with  <div className='text:red'><FaHeart /></div></p>
         </section>
       </footer>
     </div>

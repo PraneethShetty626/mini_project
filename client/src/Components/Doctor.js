@@ -45,7 +45,7 @@ class Doctor extends Component {
             <div className='doctorbody'>
                 <Card bordered={true}>
                     <div >
-                        <b>Name:</b> {name}
+                        <b>Name: </b> {name}
                     </div>
                 </Card>
                 
@@ -65,7 +65,7 @@ class Doctor extends Component {
                     <div className='col'>
                         {
                             this.state.load_patient ?
-                            <div> <h5>Patient's Data <DisplayPatient contract ={this.contracts} Acc={this.Acc} patient_address={this.state.load_patient} /> </h5></div> :
+                            <div> <h5>Patient's Record <DisplayPatient contract ={this.contracts} Acc={this.Acc} patient_address={this.state.load_patient} /> </h5></div> :
                             <div></div>
 
                         }

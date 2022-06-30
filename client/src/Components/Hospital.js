@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'antd';
+// import { Card } from 'antd';
 
 // import healthRecord from "../contracts/DoctorAddRecord.json"
 // import getWeb3 from '../getWeb3';
@@ -90,25 +90,25 @@ class Hospital extends Component{
                 <div class="h-40 bg-yellow ">
                     <div class=" m-2 text-center text-xl my-4 hover:my-8 " >
                         <span><b>Id: </b>{hosp_id}</span> <br></br>
-                        <span><b>Name:</b> {hosp_name}</span> <br></br>
+                        <span><b>Name: </b> {hosp_name}</span> <br></br>
                         <span><b>Location: </b>{hosp_location}</span>
                     </div>
                 </div>
                 <div className='row' style={{border:'1px black solid'}}>
                     <div className='col'>
-                        <h5 style={{align:'centre'}}>Grant patient access to doctor</h5>
+                        <h5 style={{align:'centre',style:"bold"}}>Grant patient access to doctor</h5>
                         <div>
                             <form onSubmit={this.grantAccess}>
                             <br></br>
-                            <div className="label mt-2"><b>Grant access to</b></div>
+                            <div className="label mt-2"><b>Grant access to:</b></div>
                             <input class="rounded-2xl bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-sky-500 hover:ring-sky-50" type="text" name="Grant to" id="access_requestor" placeholder='Doctor address'></input>
                             <br></br>
                             <br></br>
-                            <div className="label mt-2"><b>Access of:</b></div>
+                            <div className="label mt-2"><b>Access of: </b></div>
                             <input class="rounded-2xl bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-sky-500 hover:ring-sky-50 "type="text" name="Access of" id="access_of" placeholder="Patient Address" ></input>
-                            
                             <br></br>
-                            <button variant="dark" className="button" class=" h-6 rounded-xl bg-violet-100 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300" type="submit">Grant Access</button>
+                            <br></br>
+                            <button variant="dark" className="button" class="  text-black rounded-m bg-yellow-300 hover:bg-green-700 text-white active:bg-green-700 " type="submit">Grant Access</button>
 
                             </form>
                         </div>
@@ -127,7 +127,7 @@ class Hospital extends Component{
                                 <input class="rounded-2xl"    type="text" id="added_to_company" placeholder='Company Address'></input>
                                 <br></br>
                                 <button variant="dark" className="button" 
-                                class=" h-6 rounded-xl bg-violet-100 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300" type="submit">Add</button>
+                                class="text-black rounded-m bg-yellow-300 hover:bg-green-700 text-white active:bg-green-700" type="submit">Add</button>
                             </form>
                         </div>
                     </div>
@@ -155,8 +155,8 @@ class Hospital extends Component{
                             <input class="rounded-2xl"  type="text" name="name" id="doc_specs" placeholder="Specialization"></input>
                             <br></br>
                             <br></br>
-                            <button variant="dark" 
-                            class=" h-6 rounded-xl bg-violet-100 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300" className="button" type="submit">Register Doctor</button>
+                            <button variant="dark" className="button" 
+                            class="text-black rounded-m bg-yellow-300 hover:bg-green-700 text-white active:bg-green-700" type="submit">Register Doctor</button>
                         </form>
                         </div>
                     </div>

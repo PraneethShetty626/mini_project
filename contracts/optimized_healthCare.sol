@@ -76,7 +76,7 @@ contract optimized_healthCare {
 
   //setting the owner
   constructor() public {
-    owner = 0x8667fD7bb4045A29EA2F59E6e0d491e49f514100;
+    owner = 0xEEbfaa2b488bdf5D068bc4950f2d67eF4C3DF0d4;
   }
   
   //verify doctor 

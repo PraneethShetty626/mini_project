@@ -13,7 +13,6 @@ class DisplayPatientToCompany extends Component {
 
     constructor(props){
         super(props); 
-
         this.addConsultation = this.addConsultation.bind(this);
         this.getFile = this.getFile.bind(this);
         this.uploadFile = this.uploadFile.bind(this);

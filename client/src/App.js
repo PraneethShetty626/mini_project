@@ -1,5 +1,3 @@
-//Main Execution will start from this file.
-//Fistly all components will get mounted by componentsDidMount method and then render method will be called
 
 import React, { Component } from "react";
 import optHealthCare from "./contracts/optimized_healthCare.json"
@@ -69,7 +67,7 @@ class App extends Component {
     //Html template will call register page or if already regestered login page will be open
     //DocLogin file will be intiated
     return (
-      <div className="h-full bg-sky-100">
+      <div className="bg-sky-100">
       
         <NavbarComp isLogged={this.state.loggedAcc} onlogout={()=>this.setState({loggedAcc:null,loggedas:null})}/>
         {
