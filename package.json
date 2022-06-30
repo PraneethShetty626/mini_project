@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap-icons": "^1.8.3",
+    "esm": "^3.2.25",
+    "truffle": "^5.1.20"
+  }
+}

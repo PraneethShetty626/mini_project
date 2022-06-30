@@ -1,0 +1,30 @@
+
+.App{
+  /* background-image: url("./Components/Images/doc-patient1.jpg"); */
+  height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* padding-bottom: 30%; */
+  text-align: center
+}
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #0d182c;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}

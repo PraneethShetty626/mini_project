@@ -1,0 +1,118 @@
+.dlbody{
+    /* background-color: rgb(255, 0, 106); */
+    /* background-image: url(../Images/doctors.jpg); */
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ecebedf5;
+
+    background-size: cover;
+    padding-bottom: 30%;
+    width: 100%;
+    top:50%;
+}
+
+.form{
+    padding-top: 10%;
+}
+
+
+.button{
+    padding:5px;
+    margin:10px;
+}
+
+.dbutton{
+    padding:5px;
+    margin:10px;
+    background-color: rgb(35, 96, 153);
+}
+.pbutton{
+    padding:5px;
+    margin:10px;
+    background-color: rgb(35, 96, 153);
+}
+.label{
+    width: 200px;
+    
+}
+.label,input{
+    display: inline-block;
+    margin:2px;
+}
+
+.footer{
+    width:100%;
+    text-align: center;
+    padding: 30px 0;
+}
+.footer h4{
+    margin-bottom: 25px;
+    margin-top:20px;
+    font-weight: 600;
+}
+
+.abt{
+    width:80%;
+    margin:auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+
+p{
+    color:#777;
+    font-weight:14px;
+    line-height:22px;
+    padding:10px;
+}
+
+.row-dl{
+    margin-top: 5%;
+    display:flex;
+    justify-content:space-between;
+}
+
+.card-col{
+    flex-basis: 31%;
+    background:#8af1db;
+    border-radius: 15px;
+    margin-bottom: 5%;
+    padding:20px 20px;
+    box-sizing: border-box;
+}
+
+li{
+    list-style: disc;
+    transition: 0.2s;
+}
+
+li:hover{
+    /* text-decoration: underline; */
+    text-transform: capitalize;
+    font-size: medium;
+}
+
+ul{
+    text-align: left;
+}
+
+.card-col:hover{
+ box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
+}
+
+@media(max-width:700px){
+    .row-dl{
+        flex-direction:column;
+    }
+
+    .dlbody{
+        align-items: center;
+    }
+}
