@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 
 contract optimized_healthCare {
 
-  address private owner;
+  address private Admin;
   mapping (address => doctor) private doctors;
   
   mapping (address => patient) private patients; //mapping patients to their addresses
@@ -39,6 +39,7 @@ contract optimized_healthCare {
     address id;  
     string name;
     string location;
+    string license;
   }
   
   //structure of Insurance companies
@@ -74,9 +75,9 @@ contract optimized_healthCare {
       address[] patient_list;
   }
 
-  //setting the owner
+  //setting the Admin
   constructor() public {
-    owner = 0xEEbfaa2b488bdf5D068bc4950f2d67eF4C3DF0d4;
+    Admin = 0xEeef95fDBE8F64EE73068170a631fBD95d257553;
   }
   
   //verify doctor 
@@ -94,20 +95,20 @@ contract optimized_healthCare {
   }
 
  
-  //owner verification modifier
-  modifier onlyOwner() {
-    require(msg.sender == owner);
+  //Admin verification modifier
+  modifier onlyAdmin() {
+    require(msg.sender == Admin);
     _;
   }
    
 
 
-  function hospitalSignUp(address _id, string memory _name, string memory _location ) public onlyOwner() {
+  function hospitalSignUp(address _id, string memory _name, string memory _location,string memory _license ) public onlyAdmin() {
     
     hospital memory h= hospitals[_id];
     require(!(h.id > address(0x0)));
     require(keccak256(abi.encodePacked(_name)) != keccak256(""));
-    hospitals[_id] = hospital({id:_id, name:_name, location: _location});
+    hospitals[_id] = hospital({id:_id, name:_name, location: _location,license: _license});
   }
 
   //Event to emit when new patient registers
@@ -281,19 +282,19 @@ contract optimized_healthCare {
       return (p.name, p.DOB, p.id, patientFiles[pat]);
     }
 
-  function getHospitalInfo() public view returns(address, string memory, string memory)
+  function getHospitalInfo() public view returns(address, string memory, string memory,string memory)
   {
     hospital memory h = hospitals[msg.sender];
     if(h.id == 0x0000000000000000000000000000000000000000)
     {
-      return (h.id,"false","error");
+      return (h.id,"false","error","error");
     }
-    return (h.id, h.name, h.location);
+    return (h.id, h.name, h.location,h.license);
   }
 
-  function getOwnerInfo() public view  onlyOwner() returns(address)
+  function getAdminInfo() public view  onlyAdmin() returns(address)
   {
-    return (owner);
+    return (Admin);
   }
 
   function hospitalGrantAccess(address _user, address _patient) public checkPatient(_patient)
@@ -311,13 +312,13 @@ contract optimized_healthCare {
     }
   }
 
-  function addHospital(address _id, string memory _name, string memory _location) public onlyOwner(){
+  function addHospital(address _id, string memory _name, string memory _location, string memory _license) public onlyAdmin(){
     hospital memory h = hospitals[_id];
     require(!(h.id > address(0x0)));
-    hospitals[_id] = hospital({id:_id, name:_name, location:_location});
+    hospitals[_id] = hospital({id:_id, name:_name, location:_location,license: _license});
   }
  
-  function regInsuranceComp(address _id, string memory _name) public onlyOwner() {
+  function regInsuranceComp(address _id, string memory _name) public onlyAdmin() {
     insuranceComp memory i= insuranceCompanies[_id];
     require(!(i.id> address(0x0)));
     insuranceCompanies[_id] = insuranceComp({id:_id, name:_name, regPatients: new address[](0)});

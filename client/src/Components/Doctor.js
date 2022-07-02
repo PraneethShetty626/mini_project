@@ -36,20 +36,26 @@ class Doctor extends Component {
    
     async loadDoctor(){
         let res = await this.healthRecord.methods.getDoctorInfo().call({from :this.Acc[0]});
-        this.setState({name:res[0],patient_list:res[2],doc_address:res[3], contact:res[4], specialization:res[5]});
+        
+        this.setState({name:res[0],patient_list:res[2],doc_address:res[3], contact:res[3], specialization:res[4]});
+        console.log(res);
     }
  
     render() {
-        let { name, patient_list} = this.state;
+        let { name,contact,specialization, patient_list} = this.state;
         return (
             <div className='doctorbody'>
                 <Card bordered={true}>
-                    <div >
+                    <div className='text-lg'>
                         <b>Name: </b> {name}
+                        <br></br>
+                        <b>Contact </b> {contact}
+                        <br></br>
+                        <b>Occupation </b> {specialization}
                     </div>
                 </Card>
                 
-                <div className='sidebar'>
+                <div className='sidebar-doc'>
                         <h5>Patients List</h5>
                         <ul>
                             { 

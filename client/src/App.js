@@ -8,7 +8,7 @@ import Doctor from "./Components/Doctor";
 import Patient from "./Components/Patient";
 import NavbarComp from "./Components/NavbarComp";
 import Hospital from "./Components/Hospital";
-import Owner from "./Components/Owner";
+import Admin from "./Components/Admin";
 import InsuranceComp from "./Components/InsuranceComp";
 // import background from "./Components/Images/doctors.jpg"
 
@@ -75,7 +75,7 @@ class App extends Component {
           :this.state.loggedas===0?<Doctor contract={this.state.contract} Acc={this.state.accounts}/>
           :this.state.loggedas===1?<Patient contract={this.state.contract} Acc={this.state.accounts}/>
           :this.state.loggedas===2?<Hospital contract ={this.state.contract} Acc={this.state.accounts}/>
-          :this.state.loggedas===3?<Owner contract ={this.state.contract} Acc={this.state.accounts}/>
+          :this.state.loggedas===3?<Admin contract ={this.state.contract} Acc={this.state.accounts}/>
           :<InsuranceComp contract ={this.state.contract} Acc={this.state.accounts}/>
         }
                

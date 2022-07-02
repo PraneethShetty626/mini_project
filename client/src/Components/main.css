@@ -10,7 +10,8 @@
 .marque{
     /* background-color: black; */
     font-size: 20px;
-    font-style: italic;
+    /* font-style: italic;*/
+    font-family: monospace;
     color: blue;
 }
 .footer{

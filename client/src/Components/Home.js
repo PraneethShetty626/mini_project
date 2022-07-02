@@ -11,7 +11,8 @@ function Home() {
   return (
     <div>
       <div claas='rounded-lg'>
-        <marquee behaviour="alternate" onmouseover="this.stop()" onmouseout="this.start()"> <span className="marque">Hello Welcome to Our HealthCare</span> </marquee>
+        <marquee behaviour="alternate" onmouseover="this.stop()" onmouseout="this.start()"> 
+        <span className="marque">Hello Welcome to Our HealthCare</span> </marquee>
       </div>
       <div>
         <React.StrictMode>
@@ -60,13 +61,14 @@ function Home() {
           <p>Thank you for visiting our page </p>
           <div className='flex justify-center items-center'>
             <div className='flex items-center justify-between'>
-              <div className='mr-3 '><FaInstagram /></div>
-              <div className='mr-3 '><FaLinkedin /></div>
-              <div className='mr-3 '><FaTwitter /></div>
-              <div><FaMailBulk /></div>
+      <a href="www.instagram.com/santhosh_chouhan" target="_blank"><div className='mr-3 '><FaInstagram /></div></a> 
+               <a href="www.linkedin.com/santoshchavan5" target="_blank"> <div className='mr-3 '><FaLinkedin /></div></a> 
+               <a href="www.twitter.com" target="_blank"> <div className='mr-3 '><FaTwitter /></div></a> 
+               <a href="www.gmail.com" target="_blank"> <div><FaMailBulk /></div></a> 
             </div>
           </div>
           <p className='flex items-center justify-center'>Made with  <div className='text:red'><FaHeart /></div></p>
+          <p>Copyright © 2021 EHR, Inc.</p>
         </section>
       </footer>
     </div>

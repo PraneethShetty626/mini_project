@@ -97,26 +97,26 @@ class DocLogin extends Component {
       this.props.onlogin(result[0], 2);
     }
     catch (err) {
-      alert('Owner has not created your hospital account');
+      alert('Admin has not created your hospital account');
     }
 
     console.log("Hospital check");
   }
 
-  async checkOwner(event) {
+  async checkAdmin(event) {
     event.preventDefault();
     var result = null;
 
     try {
-      result = await this.cont['OPT'].methods.getOwnerInfo().call({ from: this.Acc[0] });
+      result = await this.cont['OPT'].methods.getAdminInfo().call({ from: this.Acc[0] });
       console.log(result);
       this.props.onlogin(result[0], 3);
 
     }
     catch (err) {
-      alert('You are not the owner');
+      alert('You are not the Admin');
     }
-    console.log("Owner check");
+    console.log("Admin check");
   }
 
   async checkInsuranceComp(event) {
@@ -132,7 +132,7 @@ class DocLogin extends Component {
       }
     }
     catch (e) {
-      alert('You are not registered by the owner')
+      alert('You are not registered by the Admin')
     }
   }
 
@@ -149,24 +149,24 @@ class DocLogin extends Component {
     this.registerPat = this.registerPat.bind(this);
     this.checkPat = this.checkPat.bind(this);
     this.checkHospital = this.checkHospital.bind(this);
-    this.checkOwner = this.checkOwner.bind(this);
+    this.checkAdmin = this.checkAdmin.bind(this);
     this.checkInsuranceComp = this.checkInsuranceComp.bind(this);
     this.patientLoginForm = this.patientLoginForm.bind(this);
     this.patientRegisterForm = this.patientRegisterForm.bind(this);
     this.handleMob = this.handleMob.bind(this);
 
-    const ownerForm =
+    const AdminForm =
       <div className="container">
         <br></br>
         <br></br>
-        <h3 style={{ align: 'centre' }}>Owner</h3>
+        <h3 style={{ align: 'centre' }}>Admin</h3>
 
         <div style={{ marginLeft: '20px' }}>
           <form>
 
             <br></br>
             <button class="py-2 px-4  text-white-300 transition-colors duration-150 bg-yellow-200
-            rounded-full hover:bg-green-700"  onClick={this.checkOwner}>Connect Wallet</button>
+            rounded-full hover:bg-green-700"  onClick={this.checkAdmin}>Connect Wallet</button>
           </form>
         </div>
       </div>;
@@ -290,7 +290,7 @@ class DocLogin extends Component {
     else if (fNum === 2)
       loadForm = hospitalForm;
     else if (fNum === 3)
-      loadForm = ownerForm;
+      loadForm = AdminForm;
     else if (fNum === 4)
       loadForm = insuranceCompForm;
 
@@ -317,7 +317,7 @@ class DocLogin extends Component {
                 <div class="hidden sm:block sm:ml-6">
                   <div class="flex space-x-4">
                   <a href="#" onClick={(event) => this.setState({ formNum: -1 })} class="text-white hover:bg-yellow-500 hover:text-white px-3 py-2 rounded-md text-[25px] font-large" ><b>Home</b></a>
-                    <a href="#" onClick={(event) => this.setState({ formNum: 3 })} class="text-white hover:bg-yellow-500 hover:text-white px-3 py-2 rounded-md text-[25px] font-large" ><b>Owner</b></a>
+                    <a href="#" onClick={(event) => this.setState({ formNum: 3 })} class="text-white hover:bg-yellow-500 hover:text-white px-3 py-2 rounded-md text-[25px] font-large" ><b>Admin</b></a>
 
                     <a href="#" onClick={(event) => this.setState({ formNum: 0 })} class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-[25px] font-medium"><b>Doctor</b></a>
 

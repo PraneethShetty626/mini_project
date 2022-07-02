@@ -20,19 +20,19 @@ class Hospital extends Component{
     state = {
         hosp_name:"",
         hosp_location:"",
-        hosp_id:""
+        hosp_id:"",
+        hosp_license:""
     }
     //async methods and states here
     async loadHospital(){
         try{
         let res = await this.contract.methods.getHospitalInfo().call({from:this.accounts[0]});
-        this.setState({hosp_id:res[0],hosp_name:res[1],hosp_location:res[2]});
+        this.setState({hosp_id:res[0],hosp_name:res[1],hosp_location:res[2], hosp_license:res[3]});
         }
         catch(e){
             console.log(e);
         }
     }
-
 
     async grantAccess(event){
         event.preventDefault();
@@ -45,7 +45,7 @@ class Hospital extends Component{
             console.log(result);
         }
         catch(e){
-            console.log(e)
+            console.log(e);
         }
     }
 
@@ -82,7 +82,7 @@ class Hospital extends Component{
     
       }
     render(){
-        let {hosp_name, hosp_id, hosp_location} = this.state;
+        let {hosp_name, hosp_id, hosp_location, hosp_license} = this.state;
  
         return(
             <div className='hospital-body'>
@@ -90,13 +90,15 @@ class Hospital extends Component{
                 <div class="h-40 bg-yellow ">
                     <div class=" m-2 text-center text-xl my-4 hover:my-8 " >
                         <span><b>Id: </b>{hosp_id}</span> <br></br>
-                        <span><b>Name: </b> {hosp_name}</span> <br></br>
+                        <span><b>Hospital Name: </b> {hosp_name}</span> <br></br>
                         <span><b>Location: </b>{hosp_location}</span>
+                        <br></br>
+                        <span><b>Location: </b>{hosp_license}</span>
                     </div>
                 </div>
-                <div className='row' style={{border:'1px black solid'}}>
+                <div className='row' style={{border:'2px black solid'}}>
                     <div className='col'>
-                        <h5 style={{align:'centre',style:"bold"}}>Grant patient access to doctor</h5>
+                        <h5 style={{align:'centre',style:"bold"}}><b>Grant patient access to doctor</b></h5>
                         <div>
                             <form onSubmit={this.grantAccess}>
                             <br></br>
@@ -108,16 +110,16 @@ class Hospital extends Component{
                             <input class="rounded-2xl bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-sky-500 hover:ring-sky-50 "type="text" name="Access of" id="access_of" placeholder="Patient Address" ></input>
                             <br></br>
                             <br></br>
-                            <button variant="dark" className="button" class="  text-black rounded-m bg-yellow-300 hover:bg-green-700 text-white active:bg-green-700 " type="submit">Grant Access</button>
+                            <button variant="dark" className="button" class="  text-black rounded-xl bg-green-700 hover:bg-green-700 text-white active:bg-green-700 m-4 " type="submit">Grant Access</button>
 
                             </form>
                         </div>
                     </div>
                 </div>
  
-                <div className='row mt-3' style={{border:'1px black solid'}}>
+                <div className='row mt-3' style={{border:'2px black solid'}}>
                     <div className='col'>
-                        <h5 style={{align:'centre'}}>Add Patient To Insurance Comp.</h5>
+                        <h5 style={{align:'centre'}}><b>Add Patient To Insurance Comp.</b></h5>
                         <div>
                             <form onSubmit={this.addPatientToInsuranceComp}>
                                 <div className='label mt-2'>Patient Address:</div>
@@ -127,15 +129,15 @@ class Hospital extends Component{
                                 <input class="rounded-2xl"    type="text" id="added_to_company" placeholder='Company Address'></input>
                                 <br></br>
                                 <button variant="dark" className="button" 
-                                class="text-black rounded-m bg-yellow-300 hover:bg-green-700 text-white active:bg-green-700" type="submit">Add</button>
+                                class="text-black rounded-m bg-green-700 hover:bg-green-700 text-white active:bg-green-700 mb-4 rounded-xl" type="submit">Add</button>
                             </form>
                         </div>
                     </div>
                 </div>
 
-                <div className='row mt-3' style={{border:'1px black solid'}}>
+                <div className='row mt-3' style={{border:'2px black solid'}}>
                     <div className='col'>
-                        <h5 style={{ align: 'centre' }}>Add Doctor To Blockchain</h5>
+                        <h5 style={{ align: 'centre' }}><b>Add Doctor To Blockchain</b></h5>
 
                         <div style={{ marginLeft: '20px' }}>
                         <form onSubmit={this.registerDoc}>
@@ -156,7 +158,7 @@ class Hospital extends Component{
                             <br></br>
                             <br></br>
                             <button variant="dark" className="button" 
-                            class="text-black rounded-m bg-yellow-300 hover:bg-green-700 text-white active:bg-green-700" type="submit">Register Doctor</button>
+                            class="text-black rounded-m bg-green-700 hover:bg-green-700 text-white active:bg-green-700 mb-4 rounded-xl" type="submit">Register Doctor</button>
                         </form>
                         </div>
                     </div>
