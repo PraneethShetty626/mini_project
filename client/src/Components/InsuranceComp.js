@@ -34,7 +34,7 @@ class InsuranceComp extends Component{
     async loadCompany(){
         let res= await this.contract.methods.getInsuranceCompInfo().call({from:this.accounts[0]});
         console.log(res);
-        this.setState({id:res[0],name:res[1],patient_list:res[2]});
+        this.setState({id:res[0],name:res[1],complicense:res[2],patient_list:res[3]});
     }
 
     render(){
@@ -44,8 +44,8 @@ class InsuranceComp extends Component{
             <div className="InsuranceBody">
                 <div className="containerInsurance">
             <div className='containerInsuranceText'>
-                    
-                   <p> <b>Name:</b> </p> <br></br>
+                   <p> <b>Name:</b> </p>{name} 
+                   <br></br>
                 <p><b>Address:</b>  </p> {id} 
              </div>
              </div>
@@ -53,7 +53,7 @@ class InsuranceComp extends Component{
                         <h5>Patients List</h5>
                         <div className="no-record">
                         <h6 className="no-record-text"> No records Found</h6>
-                        </div>
+                        </div> 
                         <div>
                             { 
                                 patient_list.map((patient) => {

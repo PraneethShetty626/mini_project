@@ -78,7 +78,7 @@ contract optimized_healthCare {
 
   //setting the Admin
   constructor() public {
-    admin = 0xa314d12E90E0de6C40248FFf5c54F0d1A71211aA;
+    admin = 0x8260002748bC1Bf57bf3A9BB1F5874c7A03a87EA;
   }
   
   //verify doctor 
@@ -262,7 +262,6 @@ contract optimized_healthCare {
 
     else 
       return (false, d.id);
-
   }
 
   function checkPatientInfo(uint64 _adhaar_number) public view returns(bool, address) {
@@ -282,6 +281,8 @@ contract optimized_healthCare {
       patient memory p = patients[pat];
       return (p.name, p.DOB, p.id, patientFiles[pat]);
     }
+
+   
 
   function getHospitalInfo() public view returns(address, string memory, string memory,string memory)
   {

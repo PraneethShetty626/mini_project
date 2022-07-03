@@ -4,21 +4,6 @@ import Home from './Home';
 
 import "./css/DocLogin.css";
 
-const App = () => {
-  const slides = [
-    { url: "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg" },
-    { url: "https://thumbs.dreamstime.com/b/hand-holding-glass-globe-ball-tree-growing-green-nature-blur-background-eco-concept-161081206.jpg" },
-    { url: "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg" },
-    { url: "https://thumbs.dreamstime.com/b/hand-holding-glass-globe-ball-tree-growing-green-nature-blur-background-eco-concept-161081206.jpg" },
-    { url: "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg"},
-  ];
-  const containerStyles = {
-    width: "500px",
-    height: "280px",
-    margin: "0 auto",
-  };
-};
-
 class DocLogin extends Component {
 
   state = { textvalue: "", formNum: -1, age: 0, pat_reg_login: 0, showMob: false };
@@ -106,7 +91,6 @@ class DocLogin extends Component {
   async checkAdmin(event) {
     event.preventDefault();
     var result = null;
-
     try {
       result = await this.cont['OPT'].methods.getAdminInfo().call({ from: this.Acc[0] });
       console.log(result);
@@ -180,7 +164,9 @@ class DocLogin extends Component {
 
         <div style={{ marginLeft: '20px' }}>
           <form>
-
+            
+          <div className="label mt-2"><b>License Number</b></div>
+            <input type="text" className="py-1 px-1 pl-2 rounded-full border-2 border-indigo-800" name="license_number" id="hosp_license_number" placeholder="license Number"></input>      
             <br></br>
             <button class="py-2 px-4  text-white-200 transition-colors duration-150 bg-yellow-200 rounded-full hover:bg-green-700" onClick={this.checkHospital}>Login By Address</button>
           </form>
@@ -212,7 +198,7 @@ class DocLogin extends Component {
         <div style={{ marginLeft: '20px' }}>
           <form>
             <div className="label mt-2"><b>Adhaar Number</b></div>
-            <input type="text" className="py-1 px-1 pl-2 rounded-full border-2 border-indigo-800" name="adhaar_number" id="doc_adhaar_number" placeholder="Adhaar Number"></input>
+            <input type="text" className="py-1 px-1 pl-2 rounded-full border-2 border-indigo-800" name="adhaar_number" id="doc_adhaar_number" placeholder="Adhaar Number"></input> 
             <br></br>
             <br />
 
