@@ -78,7 +78,7 @@ contract optimized_healthCare {
 
   //setting the Admin
   constructor() public {
-    admin = 0x8260002748bC1Bf57bf3A9BB1F5874c7A03a87EA;
+    admin = 0x7a8D093A81350f33c15aCa293E3e1d546Bf30Cc5;
   }
   
   //verify doctor 

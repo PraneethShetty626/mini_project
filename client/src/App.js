@@ -14,8 +14,8 @@ import InsuranceComp from "./Components/InsuranceComp";
 
 
 import "./App.css";
-import "./Components/css/antd.css"
-import 'antd/dist/antd.css';
+// import "./Components/css/antd.css"
+// import 'antd/dist/antd.css';
 
 class App extends Component {
   state = {  web3: null, accounts: null, contract: [],loggedAcc:null,loggedas:null};
@@ -67,7 +67,7 @@ class App extends Component {
     //Html template will call register page or if already regestered login page will be open
     //DocLogin file will be intiated
     return (
-      <div className="bg-sky-100">
+      <div className="bg-[white] py-auto mx-auto">
       
         <NavbarComp isLogged={this.state.loggedAcc} onlogout={()=>this.setState({loggedAcc:null,loggedas:null})}/>
         {

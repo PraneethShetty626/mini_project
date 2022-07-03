@@ -82,30 +82,30 @@ class DisplayPatientToCompany extends Component {
         }
     }
 
-    // async loadDoctorWallet(){
-    //     try{
-    //         const data = await this.contract.methods.getReceivedPayments().call({from:this.Acc[0]});
-    //         if(data)
-    //             this.setState({doctorPassbook: data[0], doctorBalance: data[1]});
+    async loadDoctorWallet(){
+        try{
+            const data = await this.contract.methods.getReceivedPayments().call({from:this.Acc[0]});
+            if(data)
+                this.setState({doctorPassbook: data[0], doctorBalance: data[1]});
             
-    //         console.log(this.state.doctorPassbook);
-    //         console.log(this.state.doctorBalance);
-    //     }
+            console.log(this.state.doctorPassbook);
+            console.log(this.state.doctorBalance);
+        }
 
-    //     catch(e){
-    //         console.log(e);
-    //     }
-    // }
+        catch(e){
+            console.log(e);
+        }
+    }
     
     componentWillMount() {
         
         if(this.props.patient_address)
             this.loadFiles(this.props.patient_address);
             this.loadDoctorConsultation(this.props.patient_address);
-            //uncomment after uncommenting from smart contract and after successful migration
+            // uncomment after uncommenting from smart contract and after successful migration
             this.loadDoctorAddedFiles(this.props.patient_address)
-            // console.log(this.doctorAddRecord)
-            // this.loadDoctorWallet();
+            console.log(this.doctorAddRecord)
+            this.loadDoctorWallet();
             
     }
 
@@ -195,12 +195,10 @@ class DisplayPatientToCompany extends Component {
         return(
             <div className='container-fluid' >
                 
-                <div className='row'>
-                <Card bordered={true} style={{width:'143%', border:'2px black solid'}}>
-                    <h6>Patient Id:</h6>  {patient_address} <br></br>
-                    <h6>Patient name:</h6>  {patient_name} <br></br>
-                    <h6>Patient age:</h6>  {patient_age}
-                </Card>
+                <div className='mt-3 pt-1 pl-2 bg-white flex flex-col items-left justify-start border-sm border-black'>
+                    <h6><span className='text-orange-400'>Patient Id</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {patient_address}</h6>   
+                    <h6><span className='text-orange-400'>Patient Name</span>&nbsp;&nbsp;: {patient_name}</h6>  
+                    <h6><span className='text-orange-400'>Patient D.O.B</span>&nbsp;&nbsp;: {patient_age}</h6>  
                 </div>
 
                 <div className='row mt-3'>

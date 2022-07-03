@@ -216,22 +216,22 @@ class DocLogin extends Component {
         {this.state.pat_reg_login === 0 ?
           <div>
             <form onSubmit={this.registerPat}>
-              <div className="label mt-2"><b>Enter Name</b></div>
+              <div className=" mt-2"><b>Enter Name</b></div>
 
               <input type="text" className="py-1 px-1 rounded-full border-2 border-indigo-800 " name="name" id="patient_name" placeholder="Name" />
 
               <br></br>
               <br />
 
-              <div className="label mt-2"><b>Address</b></div>
+              <div className=" mt-2"><b>Address</b></div>
 
               <input type="text" className="py-1 px-1 rounded-full border-2 border-indigo-800 " name="address" id="patient_address" placeholder="Address"></input>
               <br></br>
-              <br />
+              <br/>
 
-              <div className="label mt-2"><b>Gender</b></div>
+              <div className=" mt-2 "><b>Gender</b></div>
 
-              <select id="patient_gender" name="gender">
+              <select id="patient_gender" className="w-[264px] h-[36px] border-2 rounded-full border-indigo-800" name="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Transgender">Transgender</option>
@@ -240,7 +240,7 @@ class DocLogin extends Component {
               <br></br>
               <br />
 
-              <div className="label mt-2"><b>Contact Info</b></div>
+              <div className=" mt-2"><b>Contact Info</b></div>
 
               <input type="text" className="py-1 px-1 rounded-full border-2 border-indigo-600 " name="contact info" id="patient_cont" placeholder="Contact Info"></input>
               <br></br>

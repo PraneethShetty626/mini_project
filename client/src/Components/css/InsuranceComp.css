@@ -25,9 +25,6 @@
 
 .containerInsuranceText {
     position: relative;
-    height:100px;
-    width:600px;
-    background-color: cyan;
     border-radius:20px;
     /* padding-top:150px;  */
     padding:50px 50px 200px 50px;
@@ -53,10 +50,6 @@
  font-style: normal;
  color: darkblue;
 }
-p{
-    color: blue;
-    margin:50px;
-}
 .no-record{
     color:white;
     margin-top: 100px;
@@ -64,9 +57,6 @@ p{
 .no-record-text{
     color:black;
     font-size: 20px;
-}
-.h5{
-    font-size: 25px;
 }
 
 @media(max-width:700px){
