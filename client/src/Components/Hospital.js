@@ -89,11 +89,11 @@ class Hospital extends Component{
             <div className='container'> 
                 <div class="h-40 bg-yellow ">
                     <div class=" m-2 text-center text-xl my-4 hover:my-8 " >
-                        <span><b>Id: </b>{hosp_id}</span> <br></br>
+                        <span><b>Address: </b>{hosp_id}</span> <br></br>
                         <span><b>Hospital Name: </b> {hosp_name}</span> <br></br>
-                        <span><b>Location: </b>{hosp_location}</span>
+                        <span><b>License Number: </b>{hosp_license}</span>
                         <br></br>
-                        <span><b>Location: </b>{hosp_license}</span>
+                        <span><b>Locatiion: </b>{hosp_location}</span>
                     </div>
                 </div>
                 <div className='row' style={{border:'2px black solid'}}>

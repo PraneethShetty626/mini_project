@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 
 contract optimized_healthCare {
 
-  address private Admin;
+  address private admin;
   mapping (address => doctor) private doctors;
   
   mapping (address => patient) private patients; //mapping patients to their addresses
@@ -46,6 +46,7 @@ contract optimized_healthCare {
   struct insuranceComp{
     address id;  
     string name;
+    string complicense;
     mapping (address => uint8) regPatientsMapping;
     address[] regPatients;
   }
@@ -77,7 +78,7 @@ contract optimized_healthCare {
 
   //setting the Admin
   constructor() public {
-    Admin = 0xEeef95fDBE8F64EE73068170a631fBD95d257553;
+    admin = 0xa314d12E90E0de6C40248FFf5c54F0d1A71211aA;
   }
   
   //verify doctor 
@@ -97,7 +98,7 @@ contract optimized_healthCare {
  
   //Admin verification modifier
   modifier onlyAdmin() {
-    require(msg.sender == Admin);
+    require(msg.sender == admin);
     _;
   }
    
@@ -294,7 +295,7 @@ contract optimized_healthCare {
 
   function getAdminInfo() public view  onlyAdmin() returns(address)
   {
-    return (Admin);
+    return (admin);
   }
 
   function hospitalGrantAccess(address _user, address _patient) public checkPatient(_patient)
@@ -318,15 +319,15 @@ contract optimized_healthCare {
     hospitals[_id] = hospital({id:_id, name:_name, location:_location,license: _license});
   }
  
-  function regInsuranceComp(address _id, string memory _name) public onlyAdmin() {
+  function regInsuranceComp(address _id, string memory _name, string memory _complicense) public onlyAdmin() {
     insuranceComp memory i= insuranceCompanies[_id];
     require(!(i.id> address(0x0)));
-    insuranceCompanies[_id] = insuranceComp({id:_id, name:_name, regPatients: new address[](0)});
+    insuranceCompanies[_id] = insuranceComp({id:_id, name:_name,complicense:_complicense, regPatients: new address[](0)});
   } 
 
-  function getInsuranceCompInfo() public view returns(address,string memory, address[] memory){
+  function getInsuranceCompInfo() public view returns(address,string memory, string memory, address[] memory){
     insuranceComp memory i= insuranceCompanies[msg.sender];
-    return(i.id,i.name,i.regPatients);
+    return(i.id,i.name,i.complicense, i.regPatients);
   }
 
   function addPatientToInsuranceComp(address _insuranceComp, address _pat) public{

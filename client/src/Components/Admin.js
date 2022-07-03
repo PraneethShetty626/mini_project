@@ -41,11 +41,13 @@ class Admin extends Component {
     event.preventDefault();
     let id = document.getElementById("company_id").value;
     let name = document.getElementById("company_name").value;
+    let complicense = document.getElementById("complicense").value;
     console.log(id);
     console.log(name);
+    console.log(complicense);
     try {
       let result = await this.contract.methods
-        .regInsuranceComp(id, name)
+        .regInsuranceComp(id, name,complicense)
         .send({ from: this.accounts[0] });
       console.log(result);
     } catch (e) {
@@ -175,7 +177,7 @@ class Admin extends Component {
           <div className="m-3" />
           <center>
             <div className="col pt-4 mt-2 bg-yellow-400 rounded-md h-full">
-              <h4 style={{ align: "centre" }}>Add Insurance Comp.</h4>
+              <h4 style={{ align: "centre" }}>Add Insurance Company</h4>
               <div>
                 <form className="font-bold" onSubmit={this.addInsuranceComp}>
                   <div className="label mt-2">Name:</div>
@@ -192,6 +194,14 @@ class Admin extends Component {
                     className="py-1 px-1 rounded-full w-full"
                     id="company_id"
                     placeholder="Id"
+                  ></input>
+                  <br></br>
+                  <div className="label mt-2">License Number:</div>
+                  <input
+                    type="text"
+                    className="py-1 px-1 rounded-full w-full"
+                    id="complicense"
+                    placeholder="License"
                   ></input>
                   <br></br>
                   <br />
@@ -259,6 +269,15 @@ class Admin extends Component {
                     id="adhaar_number"
                     placeholder="Adhaar"
                   ></input>
+                    <br></br>
+                  <br></br>
+                  <div className="label mt-2">Certificate Number:</div>
+                  <input
+                    type="text"
+                    className="py-1 px-1 rounded-full w-70"
+                    id="certificate"
+                    placeholder="Certificate Number"
+                  ></input>
                   <br></br>
                   <br></br>
                   <div className="label mt-2">DOB:</div>
@@ -277,6 +296,7 @@ class Admin extends Component {
                     id="pincode"
                     placeholder="pincode"
                   ></input>
+                 
                   <br></br>
                   <br />
                   <br></br>

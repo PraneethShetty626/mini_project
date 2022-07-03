@@ -155,7 +155,7 @@ class DocLogin extends Component {
     this.patientRegisterForm = this.patientRegisterForm.bind(this);
     this.handleMob = this.handleMob.bind(this);
 
-    const AdminForm =
+    const adminForm =
       <div className="container">
         <br></br>
         <br></br>
@@ -290,7 +290,7 @@ class DocLogin extends Component {
     else if (fNum === 2)
       loadForm = hospitalForm;
     else if (fNum === 3)
-      loadForm = AdminForm;
+      loadForm = adminForm;
     else if (fNum === 4)
       loadForm = insuranceCompForm;
 
