@@ -10,6 +10,8 @@ import NavbarComp from "./Components/NavbarComp";
 import Hospital from "./Components/Hospital";
 import Admin from "./Components/Admin";
 import InsuranceComp from "./Components/InsuranceComp";
+import notes from "./contracts/Notes.json";
+
 // import background from "./Components/Images/doctors.jpg"
 
 
@@ -39,6 +41,12 @@ class App extends Component {
       tmpcont['DAR'] = new web3.eth.Contract(
         docAddRecord.abi,
         deployedNetworks && deployedNetworks.address,
+      );
+      var deployedNetworks1 = notes.networks[networkId];
+
+      tmpcont['NOTE'] = new web3.eth.Contract(
+        notes.abi,
+        deployedNetworks1 && deployedNetworks1.address,
       );
 
 

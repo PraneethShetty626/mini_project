@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-// import { Card } from 'antd';
-
-// import healthRecord from "../contracts/DoctorAddRecord.json"
-// import getWeb3 from '../getWeb3';
-
 class Hospital extends Component {
     constructor(props) {
         super(props);
@@ -87,9 +82,9 @@ class Hospital extends Component {
         return (
             <div>
                 <div className='container mb-3 '>
-                    <div class="rounded-[20px] text-center w-full">
-                        <h1 class="rounded-lg bg-[#C026D3] mt-2 sm:text-3xl text-2xl font-medium text-center title-font text-white">{hosp_name} <br></br><span className="text-[20px]">License No - {hosp_license}</span><br></br><p class="text-center text-white text-[20px] leading-relaxed">{hosp_id}</p>
-                            <p class="text-center text-white leading-relaxed">{hosp_location}</p>
+                    <div className="rounded-[20px] text-center w-full">
+                        <h1 className="rounded-lg bg-[#C026D3] mt-2 sm:text-3xl text-2xl font-medium text-center title-font text-white">{hosp_name} <br></br><span className="text-[20px]">License No - {hosp_license}</span><br></br><p className="text-center text-white text-[20px] leading-relaxed">{hosp_id}</p>
+                            <p className="text-center text-white leading-relaxed">{hosp_location}</p>
                         </h1>
                     </div>
                     <div className='row' style={{ border: '2px black solid', borderRadius: "20px", marginTop: "20px", padding: "20px" }}>
@@ -99,11 +94,11 @@ class Hospital extends Component {
                                 <form onSubmit={this.grantAccess}>
                                     <br></br>
                                     <div className="label mt-2"><b>Grant access to:</b></div>
-                                    <input class="rounded-2xl bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-sky-500 hover:ring-sky-50" type="text" name="Grant to" id="access_requestor" placeholder='Doctor address'></input>
+                                    <input className="rounded-2xl bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-sky-500 hover:ring-sky-50" type="text" name="Grant to" id="access_requestor" placeholder='Doctor address'></input>
                                     <br></br>
                                     <br></br>
                                     <div className="label mt-2"><b>Access of: </b></div>
-                                    <input class="rounded-2xl bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-sky-500 hover:ring-sky-50 " type="text" name="Access of" id="access_of" placeholder="Patient Address" ></input>
+                                    <input className="rounded-2xl bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-sky-500 hover:ring-sky-50 " type="text" name="Access of" id="access_of" placeholder="Patient Address" ></input>
                                     <br></br>
                                     <br></br>
                                     <button variant="dark" className="p-2 text-black rounded-xl bg-blue-700  text-white active:bg-green-700 m-4 " type="submit">Grant Access</button>
@@ -118,10 +113,10 @@ class Hospital extends Component {
                             <div>
                                 <form onSubmit={this.addPatientToInsuranceComp}>
                                     <div className='label mt-2'>Patient Address:</div>
-                                    <input type="text" class="rounded-2xl" id="added_patient" placeholder='Patient address'></input>
+                                    <input type="text" className="rounded-2xl" id="added_patient" placeholder='Patient address'></input>
                                     <br></br> <br></br>
                                     <div className='label mt-2'>Company Address:</div>
-                                    <input class="rounded-2xl" type="text" id="added_to_company" placeholder='Company Address'></input>
+                                    <input className="rounded-2xl" type="text" id="added_to_company" placeholder='Company Address'></input>
                                     <br></br>
                                     <button variant="dark" className="p-2 text-black rounded-xl bg-blue-700  text-white active:bg-green-700 m-4 " type="submit">Add Patient</button>
                                 </form>
@@ -136,19 +131,19 @@ class Hospital extends Component {
                             <div style={{ marginLeft: '20px' }}>
                                 <form onSubmit={this.registerDoc}>
                                     <div className="label mt-2"><b>Name:</b></div>
-                                    <input class="rounded-2xl" type="text" name="name" id="doc_name" placeholder="Name"></input>
+                                    <input className="rounded-2xl" type="text" name="name" id="doc_name" placeholder="Name"></input>
                                     <br></br>
                                     <br></br>
                                     <div className="label mt-2"><b>Blockchain Address:</b></div>
-                                    <input class="rounded-2xl" type="text" name="name" id="doc_id" placeholder="Address"></input>
+                                    <input className="rounded-2xl" type="text" name="name" id="doc_id" placeholder="Address"></input>
                                     <br></br>
                                     <br></br>
                                     <div className="label mt-2"><b>Contact Info:</b></div>
-                                    <input class="rounded-2xl" type="text" name="name" id="doc_contact" placeholder="Contact Info"></input>
+                                    <input className="rounded-2xl" type="text" name="name" id="doc_contact" placeholder="Contact Info"></input>
                                     <br></br>
                                     <br></br>
                                     <div className="label mt-2"><b>Specialization:</b></div>
-                                    <input class="rounded-2xl" type="text" name="name" id="doc_specs" placeholder="Specialization"></input>
+                                    <input className="rounded-2xl" type="text" name="name" id="doc_specs" placeholder="Specialization"></input>
                                     <br></br>
                                     <br></br>
                                     <button variant="dark" className="p-2 text-black rounded-xl bg-blue-700  text-white active:bg-green-700 m-4 " type="submit">Add Doctor</button>

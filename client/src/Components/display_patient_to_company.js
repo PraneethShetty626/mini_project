@@ -1,6 +1,5 @@
 import React, { Component, } from 'react';
-
-import {Card,Collapse } from 'antd';
+import {Collapse } from 'antd';
 import ipfs from './ipfs-util'
 import healthRecord from "../contracts/DoctorAddRecord.json"
 import getWeb3 from '../getWeb3';

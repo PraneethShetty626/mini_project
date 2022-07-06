@@ -1,14 +1,15 @@
-
 import React, { Component} from 'react';
-import { Card, Tag } from 'antd';
 import DisplayPatient from "./display_patient";
+import notes from "../contracts/Notes.json";
+import getWeb3 from '../getWeb3';
 import './css/doctor.css'
 class Doctor extends Component {
- 
-   
     healthRecord =this.props.contract["OPT"];
     doctorAddFiles= this.props.contract["DAR"];
     contracts=[this.healthRecord, this.doctorAddFiles];
+    bpnote = this.props.contract['NOTE'];
+    contracts=[this.healthRecord, this.doctorAddFiles,this.bpnote];
+
     Acc =this.props.Acc;
     state = {
         name: "",
@@ -16,7 +17,20 @@ class Doctor extends Component {
         contact:"",
         doc_address:"",
         specialization:"",
+        load_patient:"",
         count:0
+    }
+
+    async loadcontract() {  
+
+        var web3 = await getWeb3();
+        const networkId = await web3.eth.net.getId();
+        var deployedNetworks1 = notes.networks[networkId];
+
+        this.doctorAddRecord = new web3.eth.Contract(
+            notes.abi,
+            deployedNetworks1 && deployedNetworks1.address,
+        );
     }
 
     componentDidMount(){ 
@@ -44,29 +58,32 @@ class Doctor extends Component {
     render() {
         let { name,contact,specialization, patient_list} = this.state;
         return (
-            <div className='doctorbody'>
-                <Card bordered={true}>
-                    <div className='text-lg'>
-                        <b>Name: </b> {name}
-                        <br></br>
-                        <b>Contact </b> {contact}
-                        <br></br>
-                        <b>Occupation </b> {specialization}
+            <div className='container bg-[#BAE6FD]'>
+                <div className='w-full'>
+                    <div className="rounded-[20px] text-center w-full">
+                        <h1 className="rounded-lg bg-[#0EA5E9] mt-2 sm:text-3xl text-2xl font-medium text-center title-font text-white">{name} <br></br><span className="text-[20px]">Contact - {contact}</span><br></br><p className="text-center text-white text-[20px] leading-relaxed">{specialization}</p>
+                        </h1>
                     </div>
-                </Card>
-                
-                <div className='sidebar-doc'>
-                        <h5>Patients List</h5>
-                        <ul>
-                            { 
-                                patient_list.map((patient) => {
-                                return <div className='mt-1'><Tag onClick={()=>{this.setState({load_patient:patient, count: 1- this.state.count})}}>{patient}</Tag></div>
-                                }) 
-                            }
-                        </ul>
+
                 </div>
+                <h2 className="text-center">Patients List </h2>
+                    <div className="flex flex-wrap items-center justify-center lg:w-full sm:mx-auto sm:mb-2 -mx-2">
+                        <div className="flex flex-column p-2 sm:w-1/2 w-full flex items-center justify-center">
+                            {
+                                patient_list.map((patient) => {
+                                    return <>
+                                    <a href="#pData">
+                                    <div className="mb-2 flex justify-center items-center bg-gray-100 rounded flex p-4" onClick={() => { this.setState({ load_patient: patient, count: 1 - this.state.count });}}>
+                                        <button className="p-2 rounded-[20px] mr-2 bg-blue-200 text-black cursor-pointer">View Records</button><span className="title-font font-medium">{patient}</span>
+                                    </div>
+                                    </a>
+                                    </>
+                                })
+                            }
+                        </div>
+                    </div>
                 
-                <div className='container'>
+                    <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
                     <div className='row mt-3'>
                     <div className='col'>
                         {

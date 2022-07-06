@@ -1,11 +1,11 @@
 import React, { Component, } from 'react';
-
 import {Card,Collapse } from 'antd';
 import ipfs from './ipfs-util'
 import healthRecord from "../contracts/DoctorAddRecord.json"
 import getWeb3 from '../getWeb3';
 import DisplayFiles from "./common/display_file";
 import DisplayConsultation from "./common/displayConsultation";
+import notes from "../contracts/Notes.json";
 // import DisplayPayment from './common/displayPayment';
 import './css/display_patient.css'
 
@@ -31,12 +31,16 @@ class DisplayPatient extends Component {
         doctorAddedFiles:[],
         doctorPassbook: [],
         doctorBalance:0,
+        patientID:'',
+        patientBp:[],
+        patientBpDate:[],
         file: null
     }
 
    
     contract = this.props.contract[0];
     doctorAddRecord = this.props.contract[1];
+    bpnote = this.props.contract[2];
 
     Acc= this.props.Acc;
 
@@ -49,6 +53,12 @@ class DisplayPatient extends Component {
             healthRecord.abi,
             deployedNetwork && deployedNetwork.address,
           );
+          var deployedNetworks1 = notes.networks[networkId];
+
+          this.doctorAddRecord = new web3.eth.Contract(
+              notes.abi,
+              deployedNetworks1 && deployedNetworks1.address,
+          );
     }
     async loadFiles(){
 
@@ -56,8 +66,14 @@ class DisplayPatient extends Component {
         console.log('files',data);
         if(data[3])
         this.setState({patient_name:data[0],patient_age:data[1],files:data[3]});
-
+        this.setState({patientID:data[2]})
         console.log('files',this.state.files);
+        const res2 = await this.bpnote.methods.getBp().call({ from: this.state.patientID});
+        // let len = res2.length;
+        this.setState({patientBp:res2})
+        const resDate = await this.bpnote.methods.getDate().call({ from: this.state.patientID});
+        // len = res2.length;
+        this.setState({patientBpDate:resDate});
     }
 
     async loadDoctorConsultation(){
@@ -195,20 +211,47 @@ class DisplayPatient extends Component {
 
         return(
             <div className='container-fluid' >
-                
                 <div className='row'>
-                <Card bordered={true} style={{width:'143%', border:'2px black solid'}}>
-                    <h6>Patient Id:</h6>  {patient_address} <br></br>
-                    <h6>Patient name:</h6>  {patient_name} <br></br>
-                    <h6>Patient age:</h6>  {patient_age}
-                </Card>
+                     <div className='rounded-[20px] mt-3 p-4 pt-1 pl-2 bg-white flex flex-col items-left justify-start border-sm border-black'>
+                    <h6><span className='text-orange-400'>Patient Id</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {patient_address}</h6>   
+                    <h6><span className='text-orange-400'>Patient Name</span>&nbsp;&nbsp;: {patient_name}</h6>  
+                    <h6><span className='text-orange-400'>Patient D.O.B</span>&nbsp;&nbsp;: {patient_age}</h6>  
+                </div>
+                </div>
+                <h4 style={{ align: 'centre' }}>Health Status :</h4>
+                <div className='row mt-2'>
+                    <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
+                    <h5>Heart Rate :</h5>
+                        {
+                            this.state.patientBp.map((bps, i) => {
+                                return <div>
+                                    <h5 id={i} className='label mt-2'><span className='text-orange-500'>{i+1}</span>. {bps} ❤️</h5>
+                                </div>
+                            })
+                        }
+                    </div>
+                    <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
+                    <h5>Checked Date :</h5>
+                        {
+                            this.state.patientBpDate.map((dts, i) => {
+                                {
+                                    dts = dts.split(" ");
+                                    console.log(dts[0])
+                                }
+                                return <div>
+                                    <h5 id={i} className='label mt-2'>
+                                        <span className='text-orange-500'>{i+1}</span>. {dts[0]}</h5>
+                                </div>
+                            })
+                        }
+                    </div>
                 </div>
 
-                <div className='row mt-3'>
+                <div className='row'>
                     
-                    <div className='col-4 mt-2' style={{border:'3px solid black'}}>
+                <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
                         <h5>Patient Files</h5>
-                        <div style={{height: "310px", overflowY: "auto",width:'100%',paddingRight:'15px'}}>
+                        <div style={{paddingRight:'15px'}}>
                             <Collapse className='folderTab' defaultActiveKey={['1']}>
                                     { 
                                         files.map((fhash, i) => {                                            
@@ -221,9 +264,9 @@ class DisplayPatient extends Component {
                     </div>
 
 
-                    <div className='col-4 mt-2' style={{border:'3px solid black'}}>
+                    <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
                         <h5>Doctor Consultations </h5>
-                        <div style={{ overflowY: "auto",width:'100%', height:'310px'}}>
+                        <div style={{ overflowY: "auto"}}>
                         
                             <Collapse className='folderTab' defaultActiveKey={['1']}>
                                 { 
@@ -243,9 +286,9 @@ class DisplayPatient extends Component {
                         </div>
                     </div>
 
-                    <div className='col-4 mt-2' style={{border:'3px solid black'}}>
+                    <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
                         <h5>Doctor Added Files</h5>
-                        <div style={{height: "310px", overflowY: "auto",width:'100%',paddingRight:'15px'}}>
+                        <div style={{paddingRight:'15px'}}>
                             <Collapse className='folderTab' defaultActiveKey={['1']}>
                                     { 
                                         doctorAddedFiles.map((fhash, i) => {
@@ -261,7 +304,7 @@ class DisplayPatient extends Component {
                 <div className='row mt-3'>
                     
                     
-                    <div className='col-6 mt-3' style={{border:'3px solid black'}}>
+                <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
                             <h6>Add consultation</h6>
                             <div>
                             <form onSubmit={this.addConsultation}>
@@ -284,7 +327,7 @@ class DisplayPatient extends Component {
                             </div>
                         </div>
                     
-                    <div className='col-6 mt-3' style={{border:'3px solid black'}}>
+                        <div className='col mt-2 border-[1px] border-black p-3 rounded-[20px] m-2 '>
                         <h5>Upload File/Report</h5>
                         <div>
                         <Card bordered={true}>

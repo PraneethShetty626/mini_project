@@ -15,7 +15,7 @@ const App1 = () => {
   };
   return (
     <div>
-      <h1 class="text-bold">Medical Health Record</h1>
+      <h1 className="text-bold">Medical Health Record</h1>
       <div style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>
