@@ -177,7 +177,7 @@ class Admin extends Component {
           <div className="m-3" />
           <center>
             <div className="mt-5 text-bold ">
-              <div className="col pt-4 w-full rounded-md bg-violet-300 pb-4">
+              <div className="col pt-4 h-[460px] w-full rounded-md bg-violet-300 pb-4">
                 <h4 style={{ align: "centre" }}>Register Insurance Company</h4>
                 <div>
                   <form className="font-bold" onSubmit={this.addInsuranceComp}>
@@ -280,6 +280,7 @@ class Admin extends Component {
                     id="certificate"
                     placeholder="Certificate Number"
                   ></input>
+                  
                   <br></br>
                   <br></br>
                   <div className="label mt-2">DOB:</div>
@@ -291,12 +292,12 @@ class Admin extends Component {
                   ></input>
                   <br></br>
                   <br></br>
-                  <div className="label mt-2">pincode:</div>
+                  <div className="label mt-2">Age:</div>
                   <input
                     type="text"
                     className="py-1 px-1 rounded-full w-70"
                     id="pincode"
-                    placeholder="pincode"
+                    placeholder="Age"
                   ></input>
 
                   <br></br>

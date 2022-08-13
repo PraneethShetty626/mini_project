@@ -7,7 +7,7 @@ function Home() {
     <div>
       <div claas='rounded-lg'>
         <p behaviour="alternate"> 
-          <span className="marque">Hello Welcome to Our HealthCare</span>
+          <span className="marque"> Welcome to Our HealthCare</span>
         </p>
       </div>
       <div>
@@ -36,7 +36,7 @@ function Home() {
             <div className="card-col">
               <h3 className='color:pink'><b>How to Use</b></h3>
               <p className='text-black'>
-              Get registerred by admin if you are patient/doctor. <br></br>
+              Get registered by admin if you are patient/doctor. <br></br>
               If doctor then a Hospital verifies you with your credentials.
               If patient then login and access the Features of this application. <br></br>
               For Insurance Companies, you can get details of Patient unless patient or hospitals verifies to access Records.
@@ -44,14 +44,14 @@ function Home() {
             </div>
 
             <div className="card-col">
-              <h3 className="color:pink"><b>Features</b></h3>
-              <p className='text-black'>
+              <h3 className="color:pink "><b>Features</b></h3>
+              <p className='text-black items-center'>
                   Privacy <br></br>
                   Accuracy<br></br>
                   Performance<br></br>
                   Access Control<br></br>
                   Authentication<br></br>
-                  Secure Transactions using Ethereum Blockchain<br></br>
+                  Secure Transactions<br></br>
               </p>
             </div>
           </div>
